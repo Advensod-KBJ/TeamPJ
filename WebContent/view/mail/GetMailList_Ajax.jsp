@@ -37,6 +37,11 @@ List<Mail> list = mail_dao.getMailList(room);
 			<span id="message"><%=member.getMember_name()%></span><span class="size_limite"><%=product.getProduct_name()%> </span>
 		</div>
 	</div>
+		<div class="declaration">
+			<div>
+				<p class="btn btn-danger" style="font-size: 0.7em;">채팅방 나가기</p>
+			</div>
+		</div>
 </div>
 <div class="chat_description" style="bottom: 49px">
 	<%
