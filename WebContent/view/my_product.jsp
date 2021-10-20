@@ -79,7 +79,7 @@
 										<tr data-toggle="collapse" href="#product_${index.count }"
 											aria-expanded="false" aria-controls="product_${index.count }">
 											<td><span class="btn btn-success" style="width: 100%">${item.product_status}</span></td>
-											<td>${item.product_name}</td>
+											<td style="width: 23em;"><p class="product_list_name">${item.product_name}</p></td>
 											<td><fmt:formatDate value="${item.product_date}" pattern="yyyy-MM-dd"/></td>
 											<td><fmt:formatNumber value="${item.product_price}" pattern="#,###"/>원</td>
 										</tr>
