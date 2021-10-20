@@ -5,8 +5,8 @@
 <%@page import="com.jcpdev.dto.Mail"%>
 <%@page import="java.util.List"%>
 <%@page import="com.jcpdev.dao.MailDao"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
@@ -29,12 +29,12 @@ List<Mail> list = mail_dao.getMailList(room);
 <div class="chat_header">
 	<div class="image_box">
 		<div class="image_table">
-			<img src="/img/<%=member.getMember_img1()%>" alt="<%=member.getMember_name() %> ÇÁ·ÎÇÊ ÀÌ¹ÌÁö">
+			<img src="/img/<%=member.getMember_img1()%>" alt="<%=member.getMember_name() %> í”„ë¡œí•„ ì´ë¯¸ì§€">
 		</div>
 	</div>
 	<div class="info">
 		<div>
-			<span id="message"><%=member.getMember_name()%></span><span><%=product.getProduct_name()%> </span>
+			<span id="message"><%=member.getMember_name()%></span><span class="size_limite"><%=product.getProduct_name()%> </span>
 		</div>
 	</div>
 </div>

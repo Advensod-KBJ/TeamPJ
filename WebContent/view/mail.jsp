@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="./css/header.css">
 <link rel="stylesheet" type="text/css" href="./css/footer.css">
 <link rel="stylesheet" type="text/css" href="./css/mail.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <section class="content">
 	<div id="__next">
@@ -24,7 +25,7 @@
 								</div>
 								<div class="info">
 									<div class="nick">${item.name }</div>
-									<div class="description">${item.product_name }</div>
+									<div class="description size_limite">${item.product_name }</div>
 <!-- 									<div class="time_ago">날짜</div> -->
 								</div>
 							</li>

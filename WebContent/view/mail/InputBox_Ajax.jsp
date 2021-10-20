@@ -1,6 +1,6 @@
 <%@page import="com.jcpdev.dto.Mail"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 String room = request.getParameter("room");
 String postid = request.getParameter("order_id");
@@ -9,7 +9,7 @@ String product_no = request.getParameter("p_no");
 	<input type="hidden" name="postid" value="<%=postid%>"  id="postid_<%=room%>">
 	 <input type="hidden" name="product_no" value="<%=product_no%>"  id="product_no_<%=room%>">
 	<div class="chat_footer_area">
-		<input class="chat_input" type="text" contenteditable="true" id="content_<%=room%>"	placeholder="¸Þ¼¼Áö¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä.">
+		<input class="chat_input" type="text" contenteditable="true" id="content_<%=room%>"	placeholder="ë©”ì„¸ì§€ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.">
 	</div>
-	<button type="button" onclick="insert_mail('<%=room%>')">Àü¼Û</button>
+	<button type="button" onclick="insert_mail('<%=room%>')">ì „ì†¡</button>
 	
