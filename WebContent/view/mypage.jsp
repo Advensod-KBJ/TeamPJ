@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="./css/header.css">
 <link rel="stylesheet" type="text/css" href="./css/footer.css">
 <link rel="stylesheet" type="text/css" href="./css/mypage.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div class="mypage-main-section">
 	<div class="mypage-section1">
@@ -16,7 +17,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                     <form action="update_mypage.do" method="post">
+                     <form action="update_mypage.do" enctype="multipart/form-data" method="post"  id="frm">
                     <div class="filebox">
 	                    <img src="/img/${member.member_img1 }" class="rounded-circle" width="150" height="150" id="preview-image">
 	                    <label for="input-image">변경</label>
@@ -47,7 +48,7 @@
                       <h6 class="mb-0">이름</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" name="name" class="form-control" value="${member.member_name }">
+                      <input type="text" name="name" id="name" class="form-control" value="${member.member_name }">
                     </div>
                   </div>
                   <hr>     
@@ -56,7 +57,7 @@
                       <h6 class="mb-0">아이디</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" disabled="disabled" class="form-control" value="${member.member_id }">
+                      <input type="text" disabled="disabled" class="form-control" value="${member.member_id }" >
                     <input type="hidden" name="id" value="${member.member_id }">
                     </div>
                   </div>
@@ -66,7 +67,7 @@
                       <h6 class="mb-0">비밀번호</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="password"class="form-control" name="password">
+                      <input type="password"class="form-control" name="password"  id="pswd1" >
                     </div>
                   </div> 
                   <hr>
@@ -75,7 +76,7 @@
                       <h6 class="mb-0">비밀번호 확인</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="password" class="form-control" >
+                      <input type="password" class="form-control"  id="pswd2"  >
                     </div>
                   </div>
                   <hr>
@@ -84,7 +85,7 @@
                       <h6 class="mb-0">전화번호</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <input type="text" class="form-control" value="${member.member_tel }" name="tel">
+                      <input type="text" class="form-control" value="${member.member_tel }" name="tel" id="tel" >
                     </div>
                   </div>
                   <hr>
@@ -93,7 +94,7 @@
                       <h6 class="mb-0">메일</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                   		 <input type="text" class="form-control" value="${member.member_email }" name="email">
+                   		 <input type="text" class="form-control" value="${member.member_email }" name="email" id="email" >
                     </div>
                   </div>
                     <hr>
@@ -102,13 +103,13 @@
                       <h6 class="mb-0">주소</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      	 <input type="text" class="form-control" value="${member.member_address  }" name="address">
+                      	 <input type="text" class="form-control" value="${member.member_address  }" name="address" id="address" >
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-12">
-                      <button class="btn btn-outline-success btn-block" type="submit">수정</button>
+                      <button class="btn btn-outline-success btn-block" type="button" id="submit-btn">수정</button>
                      </form>
                     </div>
                   </div>
@@ -122,6 +123,30 @@
 	</div>
 </div>
 <script type="text/javascript">
+window.onload = function(){
+	document.getElementById('submit-btn').onclick=function(){
+		var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
+		if(document.getElementById('pswd1').value != document.getElementById('pswd2').value){
+			alert('비밀번호를 확인해주세요!');				
+		}else if((document.getElementById('pswd1').value == "")){
+			alert('비밀번호를 확인해주세요!');	
+		} else if (document.getElementById('name').value == "") {
+			alert('이름을 확인해주세요!');
+		} else if (document.getElementById('tel').value == "") {
+			alert('전화번호를 확인해주세요!');
+		}else if (document.getElementById('email').value == "") {
+			alert('이메일을 확인해주세요!');
+		}else if(!emailRule.test($("input[id='email']").val())) {            
+			alert('이메일을 확인해주세요!(정규식)');
+		} else if (document.getElementById('address').value == "") {
+			alert('주소를 확인해주세요!');
+		} else {
+		document.getElementById('frm').submit();
+		return false
+		}
+	}		
+};
+
 function readImage(input) {
     if(input.files && input.files[0]) {
         const reader = new FileReader()
