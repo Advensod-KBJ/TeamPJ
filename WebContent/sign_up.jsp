@@ -7,7 +7,7 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="css/login.css?v=3">
 <link rel="stylesheet" href="css/find.css?v=3">
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 	<div id="login">
@@ -23,27 +23,27 @@
 				
 					<div class="input_section">
 						<!-- ID -->	
-						<input class="input" type="text" id="id" name="member_id" placeholder="아이디" maxlength="20">
+						<input class="input" type="text" id="id" name="member_id" placeholder="아이디" maxlength="20" required="required"/>
+
 						<span class="error_next_box"></span>
 						<!-- password -->	
-						<input class="input" type="password" id="pswd1" name="member_password" placeholder="비밀번호(8자 이상)" maxlength="20">
+						<input class="input" type="password" id="pswd1" name="member_password" placeholder="비밀번호(8자 이상)" maxlength="20" required="required">
 						<span class="error_next_box"></span>
 						<!-- password -->	
-						<input class="input" type="password" id="pswd2" placeholder="비밀번호 재확인">
+						<input class="input" type="password" id="pswd2" name="member_password2" placeholder="비밀번호 재확인" required="required">
 						<span class="error_next_box"></span>
 						<!-- name -->	
-						<input class="input" type="text" id="name" name="member_name" placeholder="이름" maxlength="5"> 
+						<input class="input" type="text" id="name" name="member_name" placeholder="이름" maxlength="5" required="required"> 
 						<span class="error_next_box"></span>
 						<!-- tel -->	
-						<input class="input" type="text" id="tel" name="member_tel" placeholder="전화번호 입력" maxlength="16"> 
+						<input class="input" type="number" id="tel" name="member_tel" placeholder="전화번호 입력" maxlength="16" required="required" > 
 						<span class="error_next_box"></span>
 						<!-- email -->	
-						<input class="input" type="email" id="Postcode" name="member_email" placeholder="본인확인 이메일"> 
+						<input class="input" type="email" id="Postcode" name="member_email" placeholder="본인확인 이메일" required="required"> 
 						<span class="error_next_box"></span>
 						<div>
 						<input class="input2" type="button" value="주소 검색" onclick="findAddr()"><br>
-						<input class="input" type="text" name="member_address" id="userAddress" placeholder="주소를 입력"/> <br>
-						<input class="input" type="text" name="member_address2" class="form-control" placeholder="상세 주소를 입력하세요"/> <br>
+						<input class="input" type="text" name="member_address" id="userAddress" placeholder="주소를 입력" required="required"/> <br>
 						</div>
 						<span class="error_next_box"></span>
 						<input class="button1 input" type="submit" value="회원가입하기">
@@ -64,7 +64,6 @@
 	</div>
 	<script src="js/main.js"  type="text/javascript"></script>
 	<script>
-// 사용할 function명 적어주기
 function findAddr() {
 	daum.postcode.load(function() {
 		new daum.Postcode({

@@ -55,7 +55,7 @@ public class FrontController extends HttpServlet {
 		ActionForward forward = null;
 		String spath = request.getServletPath();
 		String path = "index.jsp";
-		String url = "./"; // �삉�뒗 request.getContextPath();
+		String url = "./"; 
 
 		if (spath.equals("/sign_up.do")) {
 			Action action = new InsertAction();
@@ -143,7 +143,7 @@ public class FrontController extends HttpServlet {
 			forward = new ActionForward(false, path);
 		}
 
-		if (forward.isRedirect()) { // ���엯 boolean �씪�븣�뒗 getXXX �븘�땲怨� isXXX �엯�땲�떎.
+		if (forward.isRedirect()) { 
 			response.sendRedirect(forward.getUrl());
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher(forward.getUrl());
