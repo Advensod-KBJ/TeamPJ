@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- sql mapper -->
+<mapper namespace="Member"> <!-- namespace : 일종의 식별역할의 변수 -->
+
+	<!-- 회원 가입 -->
+	<insert id="insert" parameterType="Member"
+		useGeneratedKeys="true" keyColumn="idx" keyProperty="idx">
+		insert into
+		member(member_id,member_password,member_name,member_tel,member_email,member_address,member_img1)
+		values
+		(#{member_id},#{member_password},#{member_name},#{member_tel},#{member_email},#{member_address},#{member_img1})
+	</insert>
+	<select id="getInfo" parameterType="String" resultType="Member">
+		select *
+		from member where member_id = #{member_id};
+	</select>
+	<select id="loginCheck" parameterType="java.util.Map"
+		resultType="Member">
+		select * from member where member_id = #{member_id} and
+		member_password = #{member_password}
+	</select>
+
+	<select id="findId" parameterType="java.util.Map"
+		resultType="Member">
+		select * from member where member_name = #{member_name} and member_email = #{member_email} and member_tel = #{member_tel}
+	</select>
+
+	<select id="findPassWord" parameterType="java.util.Map"	resultType="Member">
+		select * from member where member_id = #{member_id} and	member_email = #{member_email} and member_tel = #{member_tel}
+	</select>
+
+	<update id="update_password" parameterType="java.util.Map">
+		update member set	member_password = #{member_password} where member_id = #{member_id}
+	</update>
+
+	<update id="update_myprofile" parameterType="Member">
+		update member set
+		member_password = #{member_password},
+		member_name = #{member_name},
+		member_tel = #{member_tel},
+		member_email = #{member_email},
+		member_address = #{member_address},
+		member_img1 = #{member_img1}
+		where
+		member_id = #{member_id}
+	</update>
+
+	<select id="idCheck" resultType="Member">
+		select * from member where
+		member_id = #{member_id}
+	</select>
+
+	<insert id="fileupload" parameterType="Gallery">
+		insert into
+		member(member_img) values(#{member_img}) where id = #{id}
+	</insert>
+
+</mapper>
