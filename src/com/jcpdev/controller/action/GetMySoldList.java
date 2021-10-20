@@ -1,9 +1,8 @@
 package com.jcpdev.controller.action;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,13 +25,19 @@ public class GetMySoldList implements Action {
 
 		ProductDao dao = ProductDao.getInstance();
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("user_id");
+		String id = (String) session.getAttribute("user_id");
 		MemberDao mdao = MemberDao.getInstance();
-		
-		Member user =  mdao.getInfo(id);
+
+		Member user = mdao.getInfo(id);
 		List<Product> list = dao.getMySoldList(user);
+		List<Member> memlist = new ArrayList<Member>();
+
+		for (Product vo : list) {
+			memlist.add(mdao.getInfo(vo.getProduct_buyer()));
+		}
 
 		request.setAttribute("list", list);
+		request.setAttribute("memlist", memlist);
 
 		ActionForward foward = new ActionForward();
 		foward.isRedirect = false;

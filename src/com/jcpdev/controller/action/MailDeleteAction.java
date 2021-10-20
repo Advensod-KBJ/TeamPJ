@@ -1,37 +1,36 @@
 package com.jcpdev.controller.action;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.jcpdev.dao.MailDao;
 import com.jcpdev.dao.ProductDao;
+import com.jcpdev.dto.Mail;
 import com.jcpdev.dto.Product;
 
-public class SearchAction implements Action {
+public class MailDeleteAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
-		request.setCharacterEncoding("UTF-8");
-		
-		
-		String content = request.getParameter("search_name");
-		ProductDao dao = ProductDao.getInstance();
-		List<Product> list = null;
+		ActionForward foward = new ActionForward();
 
-		list = dao.getSearchList("%" + content + "%");
-		request.setAttribute("content", content);
-		request.setAttribute("list", list);
+		String room = request.getParameter("room");
+		MailDao dao = MailDao.getInstance();
+		
+		dao.delete(room);
 
-		ActionForward forward = new ActionForward();
-		forward.isRedirect = false;
-		forward.url = "Search.do";
-		return forward;
+		foward.isRedirect = true;
+		foward.url = "mail.do";
+		return foward;
+
 	}
 
 }

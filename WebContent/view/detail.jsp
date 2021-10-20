@@ -77,14 +77,38 @@ ${bean.product_content }
 				</pre>
 			</div>
 			</article>
+			<c:if test="${sessionScope.user_id !=null }">
 			<c:if test="${bean.product_seller != sessionScope.user_id }"> <!-- 자기상품 아닐때만 보이기 -->
 			<article class="detail-message" style="text-align: right;">
 			<a href='MakeMail.do?pno=${bean.product_no}'><p class="btn btn-outline-success">Message</p></a>
-			<a><p class="btn btn-outline-danger">Like</p></a>
+			<p id="like-btn">
+				<c:if test="${favCheck }">
+					<button type="button" class="btn btn-outline-secondary"	onclick="location.href='Product_Like.do?Like=like&Pno=${bean.product_no}'">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+				  						<path
+								d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path>
+								</svg>
+						<span class="visually-hidden">Button</span>
+					</button>
+				</c:if>
+				<c:if test="${!favCheck }">
+					<!-- 이미 관심등록 되어있음 -->
+					<button type="button" class="btn btn-outline-secondary" onclick="location.href='Product_Like.do?Like=unlike&Pno=${bean.product_no}'">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+				  					<path fill-rule="evenodd"
+								d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"></path>
+								</svg>
+						<span class="visually-hidden">Button</span>
+					</button>
+				</c:if>
+			</p>
 			</article>
 			</c:if>
+			</c:if>
 			<article class="detail-other">
-			<p class="article-counts">관심 0 ∙ 조회 ${bean.product_readcount }</p>
+			<p class="article-counts">관심 ${bean.product_like} ∙ 조회 ${bean.product_readcount }</p>
 			</article>
 			</div>
 			</div>

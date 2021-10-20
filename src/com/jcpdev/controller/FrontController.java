@@ -12,9 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.jcpdev.controller.action.Action;
 import com.jcpdev.controller.action.ActionForward;
 import com.jcpdev.controller.action.DeleteProduct;
-import com.jcpdev.controller.action.FindID;
+import com.jcpdev.controller.action.FavoritesListAction;
 import com.jcpdev.controller.action.FindIdAction;
-import com.jcpdev.controller.action.FindPassword;
 import com.jcpdev.controller.action.FindPasswordAction;
 import com.jcpdev.controller.action.GetMyBuyList;
 import com.jcpdev.controller.action.InsertAction;
@@ -22,6 +21,8 @@ import com.jcpdev.controller.action.LoginAction;
 import com.jcpdev.controller.action.LoginCompleteAction;
 import com.jcpdev.controller.action.LogoutAction;
 import com.jcpdev.controller.action.MailAction;
+import com.jcpdev.controller.action.MailDeleteAction;
+import com.jcpdev.controller.action.MailDoneAction;
 import com.jcpdev.controller.action.MainAction;
 import com.jcpdev.controller.action.MakeMailAction;
 import com.jcpdev.controller.action.MypageAction;
@@ -30,6 +31,7 @@ import com.jcpdev.controller.action.GetMySoldList;
 import com.jcpdev.controller.action.GetMyList;
 import com.jcpdev.controller.action.InsertProduct;
 import com.jcpdev.controller.action.ProductDetailAction;
+import com.jcpdev.controller.action.Product_Like_Action;
 import com.jcpdev.controller.action.SearchAction;
 import com.jcpdev.controller.action.UpdatePasswordAction;
 
@@ -55,7 +57,6 @@ public class FrontController extends HttpServlet {
 		ActionForward forward = null;
 		String spath = request.getServletPath();
 		String path = "index.jsp";
-		String url = "./"; 
 
 		if (spath.equals("/sign_up.do")) {
 			Action action = new InsertAction();
@@ -97,8 +98,8 @@ public class FrontController extends HttpServlet {
 			Action action = new GetMySoldList();
 			forward = action.execute(request, response);
 		} else if (spath.equals("/favoriteslist.do")) {
-			path = "./view/favoriteslist.jsp";
-			forward = new ActionForward(false, path);
+			Action action = new FavoritesListAction();
+			forward = action.execute(request, response);
 		} else if (spath.equals("/mail.do")) {
 			Action action = new MailAction();
 			forward = action.execute(request, response);
@@ -141,8 +142,17 @@ public class FrontController extends HttpServlet {
 		}else if (spath.equals("/Search.do")) {
 			path = "./view/search.jsp";
 			forward = new ActionForward(false, path);
+		} else if (spath.equals("/MailDelete.do")) {
+			Action action = new MailDeleteAction();
+			forward = action.execute(request, response);
+		} else if (spath.equals("/MailDone.do")) {
+			Action action = new MailDoneAction();
+			forward = action.execute(request, response);
+		} else if (spath.equals("/Product_Like.do")) {
+			Action action = new Product_Like_Action();
+			forward = action.execute(request, response);
 		}
-
+		
 		if (forward.isRedirect()) { 
 			response.sendRedirect(forward.getUrl());
 		} else {

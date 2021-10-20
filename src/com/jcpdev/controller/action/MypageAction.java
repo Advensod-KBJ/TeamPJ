@@ -29,7 +29,7 @@ public class MypageAction implements Action {
 		Member user = dao.getInfo(id);
 
 		request.setAttribute("member", user);
-
+		
 		ActionForward foward = new ActionForward();
 		foward.isRedirect = false;
 		foward.url = "/view/mypage.jsp";

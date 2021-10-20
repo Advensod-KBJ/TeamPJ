@@ -1,10 +1,12 @@
 <%@include file="../include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <link rel="stylesheet" type="text/css" href="./css/header.css">
 <link rel="stylesheet" type="text/css" href="./css/footer.css">
 <link rel="stylesheet" type="text/css" href="./css/mypage.css">
+<link rel="stylesheet" type="text/css" href="./css/my_product.css">
 
 <div class="mypage-main-section">
 	<div class="mypage-section1">
@@ -42,39 +44,21 @@
                 <h4 style="margin-bottom: 20px;"><i class="bi bi-heart-fill" style="margin-right: 10px;"></i> 관심 목록</h4>
                 <table class="table table-hover">
                 	<tr>
-                		<th width="115px;">상태</th>
                 		<th>판매자</th>
                 		<th>상품이름</th>
                 		<th>가격</th>
                 		<th>삭제</th>
                 	</tr>
+                	<c:forEach items="${list }" var="item" varStatus="index">
                 	<tr>
-                		<td><span class="btn btn-success" style="width: 100%">판매 중</span></td>
-                		<td>admin</td>
-                		<td>조낸맛잇는 커피</td>
-                		<td>200,000원</td>
+                		<td>${memlist[index.count-1].member_name}</td>
+                		<td style="width: 23em;"><p class="product_list_name">${item.product_name}</p></td>
+						<td><fmt:formatNumber value="${item.product_price}" pattern="#,###"/>원</td>
                 		<td>
                 			<a class="btn btn-danger"><i class="bi bi-trash"></i></a>
                 		</td>
                 	</tr>
-                	<tr>
-                		<td><span class="btn btn-danger" style="width: 100%">판매완료</span></td>
-                		<td>admin</td>
-                		<td>조낸맛잇는 커32피</td>
-                		<td>200,400원</td>
-                		<td>
-                			<a class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                		</td>
-                	</tr>
-                	<tr>
-                		<td><span class="btn btn-warning" style="width: 100%">예약 중</span></td>
-                		<td>admin</td>
-                		<td>조낸맛잇는 커32피</td>
-                		<td>200,400원</td>
-                		<td>
-                			<a class="btn btn-danger"><i class="bi bi-trash"></i></a>
-                		</td>
-                	</tr>
+                	</c:forEach>
 				</table>
                 </div>
               </div>

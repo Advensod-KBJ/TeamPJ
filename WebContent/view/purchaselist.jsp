@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="./css/header.css">
 <link rel="stylesheet" type="text/css" href="./css/footer.css">
 <link rel="stylesheet" type="text/css" href="./css/mypage.css">
+<link rel="stylesheet" type="text/css" href="./css/my_product.css">
 
 <div class="mypage-main-section">
 	<div class="mypage-section1">
@@ -46,17 +47,15 @@
                 	<tr>
                 		<th>판매자</th>
                 		<th>상품이름</th>
+                		<th>거래날짜</th>
                 		<th>가격</th>
-                		<th>삭제</th>
                 	</tr>
                 	<c:forEach items="${list }" var="item" varStatus="index">
                 	<tr>
-                		<td>${item.product_seller}</td>
-						<td>>${item.product_name}</td>
+                		<td>${memlist[index.count-1].member_name}</td>
+						<td style="width: 23em;"><p class="product_list_name">${item.product_name}</p></td>
+						<td><fmt:formatDate value="${item.product_done_date}" pattern="yyyy-MM-dd"/></td>
 						<td><fmt:formatNumber value="${item.product_price}" pattern="#,###"/>원</td>
-                		<td>
-                			<a class="btn btn-danger"><i class="bi bi-trash"></i>삭제</a>
-                		</td>
                 	</tr>
                 	</c:forEach>
 				</table>

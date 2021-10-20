@@ -137,6 +137,15 @@ a {
 	text-decoration: none;
 }
 
+.declaration a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.declaration a:hover {
+	color: #fff;
+}
+
 .left_main .card_box, .left_main ul li {
 	position: relative;
 }
@@ -386,11 +395,11 @@ button {
 }
 
 .size_limite {
-   overflow: hidden;
-   text-overflow: ellipsis;
-   height: 24px;
-   word-wrap: break-word;
-   display: -webkit-box;
-   -webkit-line-clamp: 1;
-   -webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 24px;
+	word-wrap: break-word;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
 }

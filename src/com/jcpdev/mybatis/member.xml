@@ -14,8 +14,7 @@
 		(#{member_id},#{member_password},#{member_name},#{member_tel},#{member_email},#{member_address},#{member_img1})
 	</insert>
 	<select id="getInfo" parameterType="String" resultType="Member">
-		select *
-		from member where member_id = #{member_id};
+		select * from member where member_id = #{member_id};
 	</select>
 	<select id="loginCheck" parameterType="java.util.Map"
 		resultType="Member">

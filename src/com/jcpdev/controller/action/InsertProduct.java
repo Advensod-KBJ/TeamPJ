@@ -38,10 +38,9 @@ public class InsertProduct implements Action {
 			String filename3 = multi_request.getFilesystemName("img3");
 			
 			ProductDao pdao = ProductDao.getInstance();
-			Product vo = new Product(0,product_category,product_name, product_content, product_price, filename1, filename2, filename3,id, null, null, null, 0);
+			Product vo = new Product(0,product_category,product_name, product_content, product_price, filename1, filename2, filename3,id, null, null,0, null,null,0);
 			System.out.println(vo);
 			pdao.insert(vo);
-			System.out.println("gallery insert 성공!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

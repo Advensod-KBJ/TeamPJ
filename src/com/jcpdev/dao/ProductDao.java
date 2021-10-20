@@ -29,10 +29,11 @@ public class ProductDao {
 		mapper.close();
 		return list;
 	}
+
 	public List<Product> getSearchList(String content) { // 상품 검색 리스트
 		List<Product> list = null;
 		SqlSession mapper = factory.openSession();
-		list = mapper.selectList("product.getSearchList",content);
+		list = mapper.selectList("product.getSearchList", content);
 		mapper.close();
 		return list;
 	}
@@ -44,7 +45,7 @@ public class ProductDao {
 		mapper.close();
 		return list;
 	}
-	
+
 	public List<Product> getMySoldList(Member vo) { // 판매내역
 		List<Product> list = null;
 		SqlSession mapper = factory.openSession();
@@ -85,6 +86,13 @@ public class ProductDao {
 	public void update_product(Product dto) { // 상품수정
 		SqlSession mapper = factory.openSession();
 		mapper.insert("product.update_product", dto);
+		mapper.commit();
+		mapper.close();
+	}
+
+	public void update_product_done(Product dto) { // 상품상태 변경 (거래완료)
+		SqlSession mapper = factory.openSession();
+		mapper.insert("product.update_product_done", dto);
 		mapper.commit();
 		mapper.close();
 	}

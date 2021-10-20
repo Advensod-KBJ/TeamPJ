@@ -39,7 +39,10 @@ List<Mail> list = mail_dao.getMailList(room);
 	</div>
 		<div class="declaration">
 			<div>
-				<p class="btn btn-danger" style="font-size: 0.7em;">채팅방 나가기</p>
+			<%if(product.getProduct_seller().equals(id)){ %>
+				<p class="btn btn-success" style="font-size: 0.7em;"><a href="MailDone.do?room=<%=room%>&p_no=<%=product.getProduct_no()%>&buyer=<%=order_id%>">거래 완료</a></p>
+			<%} %>
+				<p class="btn btn-danger" style="font-size: 0.7em;"><a href="MailDelete.do?room=<%=room%>">채팅방 나가기</a></p>
 			</div>
 		</div>
 </div>

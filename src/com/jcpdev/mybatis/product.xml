@@ -6,7 +6,7 @@
 	
 	<!-- 상품테이블 리스트 -->
 	<select id="getList" resultType="Product">
-		select * from product
+		select * from product where product_status = 'ing'
 	</select>
 	
 	<!-- 내 판매내역 -->
@@ -15,12 +15,12 @@
 	</select>
 	
 	<select id="getMyList" resultType="Product"	parameterType="Member">
-		select * from product where product_seller =#{member_id}
+		select * from product where product_seller = #{member_id} and product_status ='ing'
 	</select>
 	
 	<!-- 내 구매내역 -->
 	<select id="getMyBuyList" resultType="Product"	parameterType="Member">
-		select * from product where product_buyer =#{member_id}
+		select * from product where product_buyer = #{member_id} and product_status ='done'
 	</select>
 	
 	<!-- 상품번호로 조회 -->
@@ -45,14 +45,19 @@
 		where product_no=#{product_no}
 	</update>
 	
+		<!-- 상품 상태 변경(거랜완료) -->
+	<update id="update_product_done" parameterType="Product">
+		update product set product_status=#{product_status}, product_buyer=#{product_buyer},product_done_date=now()	where product_no=#{product_no}
+	</update>
+	
 	<!-- 증겨찾기 등록-->
 	<update id="update_like" parameterType="int">
-		update product set product_like= 1 where product_no=#{product_no}
+		update product set product_like= product_like+1 where product_no=#{product_no}
 	</update>
 	
 	<!-- 즐겨찾기 해제 -->
 	<update id="delete_like" parameterType="int">
-		update product set product_like= 0 where product_no=#{product_no}
+		update product set product_like= product_like-1 where product_no=#{product_no}
 	</update>
 	
 	<!-- 즐겨찾기 목록 조회 -->
@@ -62,7 +67,7 @@
 	
 	<!-- 상품 찾기 목록 조회 -->
 	<select id="getSearchList" resultType="Product"	parameterType="String">
-		select * from product where product_name like #{content};
+		select * from product where product_name like #{content} and product_status = 'ing'
 	</select>
 	
 	<!-- 상품 삭제  -->

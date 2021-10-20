@@ -45,7 +45,6 @@ public class MemberDao {
 		return user;
 	}
 
-	//
 	public Member passwordCheck(Map<String, Object> map) {
 		SqlSession mapper = sqlFactory.openSession();
 		Member dto = mapper.selectOne("passwordCheck", map);

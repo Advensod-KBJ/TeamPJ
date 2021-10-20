@@ -31,7 +31,7 @@ public class MailDao {
 		List<Mail> list = null;
 		SqlSession mapper = factory.openSession();
 		list = mapper.selectList("MailSpace.getRoomList", id);
-		mapper.commit();
+		mapper.close();
 		return list;
 	}
 
@@ -75,9 +75,16 @@ public class MailDao {
 		return cnt;
 	}
 
-	public void delete(int mail_no) { // 쪽지 삭제
+	public void delete(String mail_room) { // 쪽지 삭제
 		SqlSession mapper = factory.openSession();
-		mapper.delete("MailSpace.delete", mail_no);
+		mapper.delete("MailSpace.delete", mail_room);
+		mapper.commit();
+		mapper.close();
+	}
+
+	public void deleteDone(int product_no) { // 거래완료후 그 상품관련 메일 전체 삭제
+		SqlSession mapper = factory.openSession();
+		mapper.delete("MailSpace.deleteDone", product_no);
 		mapper.commit();
 		mapper.close();
 	}

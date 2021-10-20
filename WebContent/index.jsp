@@ -20,7 +20,7 @@
 				<div class="card-text">
 					<span style="font-weight: bold;">
 					<fmt:formatNumber value="${item.product_price }" pattern="#,###"/>원
-					</span><span class="card-span"><i class="bi bi-heart"></i> 4</span>
+					</span><span class="card-span"><i class="bi bi-heart-fill"></i> ${item.product_like }</span>
 				</div>
 			</div>
 		</div>
