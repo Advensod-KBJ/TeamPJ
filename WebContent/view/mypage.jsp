@@ -126,11 +126,14 @@
 window.onload = function(){
 	document.getElementById('submit-btn').onclick=function(){
 		var emailRule = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규식
+		
 		if(document.getElementById('pswd1').value != document.getElementById('pswd2').value){
 			alert('비밀번호를 확인해주세요!');				
 		}else if((document.getElementById('pswd1').value == "")){
 			alert('비밀번호를 확인해주세요!');	
-		} else if (document.getElementById('name').value == "") {
+		}else if((document.getElementById('pswd1').value.length<8)){
+			alert('비밀번호 길이는 8자 이상입니다.');	
+		}else if (document.getElementById('name').value == "") {
 			alert('이름을 확인해주세요!');
 		} else if (document.getElementById('tel').value == "") {
 			alert('전화번호를 확인해주세요!');

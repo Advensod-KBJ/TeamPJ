@@ -74,6 +74,8 @@
 					alert('비밀번호를 올바르게 입력하세요.');
 				} else if (document.getElementById('pswd1').value == "") {
 					alert('비밀번호를 올바르게 입력하세요.');
+				}else if((document.getElementById('pswd1').value.length<8)){
+					alert('비밀번호 길이는 8자 이상입니다.');	
 				} else if (document.getElementById('id').value == "") {
 					alert('아이디를 확인해주세요!');
 				} else if (document.getElementById('name').value == "") {
